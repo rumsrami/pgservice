@@ -1,0 +1,12 @@
+FROM golang:latest as build_base
+RUN apt-get update && \
+  apt-get install -y postgresql-client bash ca-certificates git
+RUN mkdir -p $GOPATH/src/github.com/app
+WORKDIR $GOPATH/src/github.com/app
+
+ENV GO111MODULE on
+ENV CGO_ENABLED 0
+
+COPY . .
+RUN make build BINARY_NAME=migrate
+RUN chmod a+x ./bin/migrate

@@ -1,0 +1,39 @@
+version: '3'
+services:
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:12
+    ports:
+    - 5432:5432
+    environment:
+       POSTGRES_PASSWORD: postgres
+       POSTGRES_USER: postgres
+    volumes:
+    - postgres-db:/var/lib/postgresql/data
+    restart: always
+  
+  db-migrator:
+    container_name: db-migrator
+    build:
+      context: .
+      dockerfile: Dockerfile.migrate
+    depends_on:
+      - "postgres-db"
+    command: ["./scripts/wait.sh", "postgres-db", "./scripts/migrate.sh"]
+    environment:
+      - BINARY_NAME=migrate
+  
+  pgservice:
+    container_name: pgservice
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    depends_on:
+      - "postgres-db"
+    ports:
+      - 5000:5000
+    restart: always
+
+volumes:
+  postgres-db:
+    driver: local

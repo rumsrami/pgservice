@@ -1,0 +1,17 @@
+FROM golang:latest as build_base
+RUN apt-get install -y bash ca-certificates git && \
+    mkdir -p $GOPATH/src/github.com/app
+WORKDIR $GOPATH/src/github.com/app
+
+ENV GO111MODULE on
+ENV CGO_ENABLED 0
+COPY . .
+RUN make build BINARY_NAME=api
+RUN chmod a+x ./bin/api
+
+FROM scratch
+COPY --from=build_base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=build_base /go/src/github.com/app/bin/api .
+
+EXPOSE 5000
+ENTRYPOINT ["./api"]

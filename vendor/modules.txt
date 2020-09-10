@@ -1,0 +1,36 @@
+# github.com/ardanlabs/conf v1.3.2
+## explicit
+github.com/ardanlabs/conf
+# github.com/cheekybits/is v0.0.0-20150225183255-68e9c0620927
+## explicit
+# github.com/dimiro1/darwin v0.0.0-20191008194338-370f81775d3b
+## explicit
+github.com/dimiro1/darwin
+# github.com/go-chi/chi v4.1.2+incompatible
+## explicit
+github.com/go-chi/chi
+github.com/go-chi/chi/middleware
+# github.com/go-sql-driver/mysql v1.5.0
+## explicit
+# github.com/google/uuid v1.1.2
+## explicit
+github.com/google/uuid
+# github.com/jmoiron/sqlx v1.2.0
+## explicit
+github.com/jmoiron/sqlx
+github.com/jmoiron/sqlx/reflectx
+# github.com/lib/pq v1.8.0
+## explicit
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
+# github.com/matryer/respond v1.0.1
+## explicit
+# github.com/mattn/go-sqlite3 v1.14.1
+## explicit
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
+# gopkg.in/matryer/respond.v1 v1.0.1
+## explicit
+gopkg.in/matryer/respond.v1
